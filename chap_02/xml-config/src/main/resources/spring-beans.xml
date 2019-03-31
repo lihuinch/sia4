@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--使用普通的命名空间-->
+
+    <!--此处不配bean的id-->
+    <bean class="com.lihuinch.bean.XmlBeanWithoutId">
+        <property name="value" value="XmlBeanWithoutId.value"/>
+    </bean>
+
+    <bean id="xmlBean" class="com.lihuinch.bean.XmlBean"/>
+
+    <bean id="xmlBeanWithOtherBean" class="com.lihuinch.bean.XmlBeanPropertiesWithStringAndBean">
+        <constructor-arg value="XmlBeanWithStringAndOtherBean.value"/>
+        <constructor-arg ref="xmlBean"/>
+        <constructor-arg ref="xmlBean"/>
+    </bean>
+
+    <!--有多个构造函数，只调用其中一个-->
+    <bean id="xmlBeanWithHasOneMoreConstructor" class="com.lihuinch.bean.XmlBeanWithHasOneMoreConstructor">
+        <constructor-arg value="XmlBeanWithStringAndOtherBean.value"/>
+        <constructor-arg ref="xmlBean"/>
+        <constructor-arg ref="xmlBean"/>
+    </bean>
+
+    <!--使用 property 需要提供对应的setter-->
+    <bean id="xmlBeanPropertiesWithStringAndBeanWithoutConstructor"
+          class="com.lihuinch.bean.XmlBeanPropertiesWithStringAndBeanWithoutConstructor">
+        <property name="value" value="XmlBeanPropertiesWithStringAndBeanWithoutConstructor.value"/>
+        <property name="xmlBean1" ref="xmlBean"/>
+        <property name="xmlBean2" ref="xmlBean"/>
+    </bean>
+
+    <!--构造函数中有list-->
+    <bean id="xmlBeanWithListInConstructor" class="com.lihuinch.bean.XmlBeanWithListInConstructor">
+        <constructor-arg index="0" value=""/>
+        <constructor-arg index="1">
+            <list>
+                <value>xmlBeanWithListInConstructor.list.[0]</value>
+                <value>xmlBeanWithListInConstructor.list.[1]</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!--属性有list，但是没有构造器，有setter-->
+    <bean id="xmlBeanWithListWithoutConstructor" class="com.lihuinch.bean.XmlBeanWithListWithoutConstructor">
+        <property name="stringList">
+            <list>
+                <value>XmlBeanWithListWithoutConstructor.list.[0]</value>
+                <value>XmlBeanWithListWithoutConstructor.list.[1]</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--没有构造器和setter-->
+    <!-- <bean id="xmlBeanWithoutSetterAndConstructor" class="com.lihuinch.bean.XmlBeanWithoutSetterAndConstructor">
+            <property name="value" value="XmlBeanWithoutSetterAndConstructor.value" />
+            <property name="xmlBean" ref="xmlBean" />
+        </bean>-->
+
+</beans>
