@@ -36,7 +36,7 @@ public class ProfileJavaConfigTest {
 
     @Test
     public void testForOnlyUseProfile() {
-        System.out.println("注入的bean是BaseBeanActiveOneImpl");
+        System.out.println("spring上下文中注入的bean是BaseBeanActiveOneImpl");
         System.out.println(baseBean);
     }
 }

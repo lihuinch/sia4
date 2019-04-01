@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
  * @date 2019/4/1 12:47
  */
 @Data
-// component两个不能一样
+// component两个value不能一样
 // @Component("baseBean")
-@Profile("one")
+// @Component
+// @Profile("one")
 public class BaseBeanActiveOneImpl implements BaseBean {
 
     public void show() {

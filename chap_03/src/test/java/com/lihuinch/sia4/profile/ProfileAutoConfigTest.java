@@ -2,6 +2,7 @@ package com.lihuinch.sia4.profile;
 
 import com.lihuinch.sia4.profile.bean.ActiveOneBean;
 import com.lihuinch.sia4.profile.bean.ActiveTwoBean;
+import com.lihuinch.sia4.profile.bean.BaseBean;
 import com.lihuinch.sia4.profile.config.ProfileAutoConfig;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +26,13 @@ public class ProfileAutoConfigTest {
     @Autowired
     private ActiveOneBean activeOneBean;
 
-    @Autowired
+    @Autowired(required = false)
     private ActiveTwoBean activeTwoBean;
+
+    //    不可以声明两个bean
+    //    @Autowired
+    //    private BaseBean baseBean;
+
 
     @Before
     public void before() {
@@ -40,8 +46,12 @@ public class ProfileAutoConfigTest {
         System.out.println("加上@Profile(\"one\")的 bean 在one环境的 spring上下文中");
         System.out.println(activeOneBean);
 
+        System.out.println();
 
         System.out.println("加上@Profile(\"two\")的 bean 不在one环境的spring上下文中");
-        System.out.println(activeOneBean);
+        System.out.println(activeTwoBean);
+
+
+
     }
 }
