@@ -1,7 +1,12 @@
+src/main/java/com/xxx/commonservice/service/
 target/
+out/
 !.mvn/wrapper/maven-wrapper.jar
-
+classes/
+*.depend
+src/main/java/com/xxx/commonservice/service/*
 ### STS ###
+.apt_generated
 .classpath
 .factorypath
 .project
@@ -9,10 +14,10 @@ target/
 .springBeans
 
 ### IntelliJ IDEA ###
-### .idea ###
-### *.iws ###
-### *.iml ###
-### *.ipr ###
+.idea
+*.iws
+*.iml
+*.ipr
 
 ### NetBeans ###
 nbproject/private/

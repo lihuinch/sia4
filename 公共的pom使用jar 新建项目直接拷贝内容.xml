@@ -1,0 +1,37 @@
+
+<!--sia4标准的groupId和artifactId-->
+<groupId>com.lihuinch.sia4</groupId>
+<artifactId>章节.功能</artifactId>
+
+<dependencies>
+	<!--必要的jar包-->
+
+	<!--spring基础-->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>4.3.18.RELEASE</version>
+	</dependency>
+	
+	<!--开启test-->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>4.3.18.RELEASE</version>
+	</dependency>
+	
+	<!--开启junit-->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+	</dependency>
+	
+	<!--lombok-->
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<version>1.16.18</version>
+	</dependency>
+	
+</dependencies>
