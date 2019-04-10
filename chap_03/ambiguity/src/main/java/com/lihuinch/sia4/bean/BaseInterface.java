@@ -6,5 +6,5 @@ package com.lihuinch.sia4.bean;
  * @author lihuinch
  * @date 2019/4/10 7:26
  */
-public interface BaseInteface {
+public interface BaseInterface {
 }

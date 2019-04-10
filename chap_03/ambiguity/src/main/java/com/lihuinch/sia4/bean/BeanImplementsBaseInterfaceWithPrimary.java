@@ -13,5 +13,5 @@ import org.springframework.stereotype.Component;
 @Data
 @Component
 @Primary
-public class BeanImplementsBaseInterfaceWithPrimary implements BaseInteface {
+public class BeanImplementsBaseInterfaceWithPrimary implements BaseInterface {
 }
