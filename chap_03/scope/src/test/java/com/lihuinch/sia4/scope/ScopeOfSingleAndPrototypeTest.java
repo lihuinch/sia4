@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ScopeAutoConfig.class)
-public class ScopeTest {
+public class ScopeOfSingleAndPrototypeTest {
 
     @Autowired
     private SingletonBean singletonBean1;
@@ -49,7 +49,7 @@ public class ScopeTest {
 
     @Before
     public void before() {
-        System.out.println("=================== 关于bean作用域的测试 ===================");
+        System.out.println("=================== 关于bean作用域[单例和原型]的测试 ===================");
         System.out.println("=================== 使用了lombok，请勾选compile选择选项使得lombo可以工作 ===================");
         System.out.println();
     }
