@@ -2,9 +2,7 @@ package com.lihuinch.sia4.aop.source.aspect.test;
 
 import com.lihuinch.sia4.aop.source.aspect.TrackCounter;
 import com.lihuinch.sia4.aop.source.bean.BlankDisc;
-import com.lihuinch.sia4.aop.source.bean.Encoreable;
 import com.lihuinch.sia4.aop.source.bean.Performance;
-import com.lihuinch.sia4.aop.source.cofig.AutoConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,14 +14,15 @@ import java.util.Map;
 
 /**
  * @author lihuinch
- * @date 2019/7/3 20:40
+ * @date 2019/7/4 21:37
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = AutoConfig.class)
-public class SourceCodeTest {
+@ContextConfiguration(locations = "classpath:aop.xml")
+public class SourceTestWitXML {
 
     @Autowired
     private Performance performance;
+
 
     @Autowired
     private BlankDisc blankDisc;
@@ -60,20 +59,5 @@ public class SourceCodeTest {
         for (Map.Entry<Integer, Integer> entry : TrackCounter.trackCounts2.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
-    }
-
-    @Test
-    public void test3() {
-
-
-        System.out.println("引入新方法");
-        System.out.println("其实的意思是，对一个类实现一个新的接口");
-        System.out.println("直接转型即可");
-        System.out.println("你可以把当前对象转型成另一个对象，那么很显然，你就可以调用另一个对象的方法了");
-        System.out.println("http://www.blogjava.net/jackfrued/archive/2010/02/27/314060.html");
-        performance.perform();
-        Encoreable encoreable = (Encoreable)performance;
-        encoreable.performEncore();
-
     }
 }
