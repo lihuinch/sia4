@@ -9,9 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date 2019/7/10 21:45
  */
 @Controller
+@RequestMapping(value = {"/", "/homepage"})
 public class HomeController {
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String home() {
         System.out.println("HomeController - home");
         return "home";
