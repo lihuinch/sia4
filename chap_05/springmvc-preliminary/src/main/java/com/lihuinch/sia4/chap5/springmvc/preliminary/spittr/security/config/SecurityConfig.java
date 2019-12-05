@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("password").roles("USER", "ADMIN");
         */
 
-        auth.jdbcAuthentication()
+        // DB
+/*        auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .usersByUsernameQuery(
                         "select username, password, true " +
@@ -48,8 +49,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "select username, 'ROLE_USER' " +
                                 "from Spitter where username=?")
                 // .passwordEncoder(new StandardPasswordEncoder("53cr3t"))
+        ;*/
 
+        // LDAP
+        auth.ldapAuthentication()
+                .userSearchBase("ou=people")
+                .userSearchFilter("(uid={0})")
+                .groupSearchBase("ou=groups")
+                .groupSearchFilter("member={0}")
+                .contextSource()
+                .root("dc=habuma,dc=com")
+                .ldif("classpath:users.ldif");
         ;
 
     }
+
+
 }
