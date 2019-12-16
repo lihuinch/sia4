@@ -51,4 +51,17 @@ public class JdbcSpitterRepository implements SpitterRepository {
         }
     }
 
+/*    public Spitter findOne(long id) {
+        return jdbc.queryForObject(
+                "",
+                this::mapperSpitter,
+                id
+        );
+    }
+
+    private Spitter mapperSpitter(ResultSet rs, int row) {
+        return new Spitter();
+
+    }*/
+
 }

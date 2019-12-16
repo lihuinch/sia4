@@ -1,7 +1,10 @@
 package com.lihuinch.sia4.chap5.springmvc.preliminary.spittr.security.config;
 
+import com.lihuinch.sia4.chap5.springmvc.preliminary.spittr.data.SpitterRepository;
+import com.lihuinch.sia4.chap5.springmvc.preliminary.spittr.security.service.SpitterUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,13 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private SpitterRepository spitterRepository;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().and()
-                .httpBasic();
+                .antMatchers("/spitters/me").authenticated()
+                .antMatchers(HttpMethod.POST, "spittles").authenticated()
+                .anyRequest().permitAll()
+        ;
     }
 
     @Override
@@ -51,8 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // .passwordEncoder(new StandardPasswordEncoder("53cr3t"))
         ;*/
 
-        // LDAP
-        auth.ldapAuthentication()
+        // LDAP 未生效
+/*        auth.ldapAuthentication()
                 .userSearchBase("ou=people")
                 .userSearchFilter("(uid={0})")
                 .groupSearchBase("ou=groups")
@@ -60,7 +66,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .contextSource()
                 .root("dc=habuma,dc=com")
                 .ldif("classpath:users.ldif");
-        ;
+        ;*/
+
+        // 自定义userdetail
+        auth.userDetailsService(new SpitterUserService(spitterRepository));
 
     }
 
