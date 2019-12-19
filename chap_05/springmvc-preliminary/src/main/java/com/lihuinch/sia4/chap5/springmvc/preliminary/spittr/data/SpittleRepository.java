@@ -1,6 +1,7 @@
 package com.lihuinch.sia4.chap5.springmvc.preliminary.spittr.data;
 
 import com.lihuinch.sia4.chap5.springmvc.preliminary.spittr.Spittle;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

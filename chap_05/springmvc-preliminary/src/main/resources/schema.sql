@@ -14,3 +14,5 @@ create table Spitter (
 	last_name varchar(30) not null,
 	email varchar(30) not null
 );
+
+INSERT INTO Spitter VALUES (1, 'admin', 'password', 'admin', 'admin', 'admin@admin.com');
