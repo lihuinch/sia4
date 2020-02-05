@@ -5,14 +5,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
+import org.springframework.orm.jpa.vendor.Database;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
-import java.util.Properties;
 
 /**
  * spring 配置事务管理器: https://www.cnblogs.com/ooo0/p/11029612.html
@@ -53,7 +56,8 @@ public class AppConfig implements TransactionManagementConfigurer {
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-        cpds.setJdbcUrl("jdbc:mysql://localhost:3306/hibernate-integration?useUnicode=true&characterEncoding=UTF-8");
+
+        cpds.setJdbcUrl("jdbc:mysql://localhost:3306/chap11?useUnicode=true&characterEncoding=UTF-8");
         cpds.setUser("root");
         cpds.setPassword("123456");
 
@@ -67,17 +71,35 @@ public class AppConfig implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
-        LocalSessionFactoryBean sfb = new LocalSessionFactoryBean();
+    public LocalContainerEntityManagerFactoryBean entityManageFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+        /*
+         ————————————————
+         版权声明：本文为CSDN博主「一朝风月S」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+         原文链接：https://blog.csdn.net/weixin_37624828/article/details/85234237
 
-        sfb.setDataSource(dataSource);
-        String[] pacages = {"com.lihuinch.sia4.chap11.hibernate.entity"};
-        sfb.setPackagesToScan(pacages);
-        Properties props = new Properties();
-        props.setProperty("dialect", "org.hibernate.dialect.mysqldialect");
-        sfb.setHibernateProperties(props);
+         */
 
-        return sfb;
+        LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
+        emfb.setDataSource(dataSource);
+        emfb.setJpaVendorAdapter(jpaVendorAdapter);
+        emfb.setPackagesToScan("com.lihuinch.sia4.chap11.jpa.entity");
+        return emfb;
+    }
+
+    @Bean
+    public JpaVendorAdapter jpaVendorAdapter() {
+        /*
+         ————————————————
+         版权声明：本文为CSDN博主「一朝风月S」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+         原文链接：https://blog.csdn.net/weixin_37624828/article/details/85234237
+
+         */
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabase(Database.MYSQL);
+        adapter.setShowSql(true);
+        adapter.setGenerateDdl(false);
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
+        return adapter;
     }
 
     /**
@@ -91,5 +113,10 @@ public class AppConfig implements TransactionManagementConfigurer {
         //设置事务管理器管理的数据源
         transactionManager.setDataSource(dataSource());
         return transactionManager;
+    }
+
+    @Bean
+    public PersistenceAnnotationBeanPostProcessor paPostProcessor() {
+        return new PersistenceAnnotationBeanPostProcessor();
     }
 }
