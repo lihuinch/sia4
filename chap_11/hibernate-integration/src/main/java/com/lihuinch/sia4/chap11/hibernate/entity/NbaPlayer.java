@@ -54,4 +54,13 @@ public class NbaPlayer {
         this.playerName = playerName;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "NbaPlayer{" +
+                "id=" + id +
+                ", teamName='" + teamName + '\'' +
+                ", playerName='" + playerName + '\'' +
+                '}';
+    }
 }

@@ -3,7 +3,6 @@ package com.lihuinch.sia4.chap11.hibernate.test;
 import com.lihuinch.sia4.chap11.hibernate.config.AppConfig;
 import com.lihuinch.sia4.chap11.hibernate.entity.NbaPlayer;
 import com.lihuinch.sia4.chap11.hibernate.repository.HibernateRepository;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,9 @@ public class HibernateTest {
         nbaPlayer.setPlayerName("科比");
         nbaPlayer.setTeamName("LA");
         repository.save(nbaPlayer);
+
+
+        System.out.println(repository.findByPlayerName("科比"));
 
     }
 

@@ -43,7 +43,8 @@ public class HibernateRepository {
     public NbaPlayer findByPlayerName(String playerName) {
         return (NbaPlayer) currentSession()
                 .createCriteria(NbaPlayer.class)
-                .add(Restrictions.eq("player_name", playerName))
+                // 这边要用java实体的字段名
+                .add(Restrictions.eq("playerName", playerName))
                 .list().get(0);
     }
 
