@@ -71,7 +71,7 @@ public class AppConfig implements TransactionManagementConfigurer {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManageFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         /*
          ————————————————
          版权声明：本文为CSDN博主「一朝风月S」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
