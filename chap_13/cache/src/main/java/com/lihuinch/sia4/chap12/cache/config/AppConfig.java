@@ -21,14 +21,16 @@ import java.util.List;
  * @date 2020/2/11 10:17
  */
 @Configuration
-@Import(value = {EhcacheConfig.class, RedisConfig.class})
+@Import(value = {EhcacheConfig.class, RedisConfig.class, HibernateConfig.class})
 @ComponentScan(basePackages = "com.lihuinch.sia4.chap12.cache")
 @EnableCaching
-public class CachingConfig {
+public class AppConfig {
 
     @Bean
-    public CacheManager cacheManager( @Autowired @Qualifier("ehCacheManagerFactoryBean") net.sf.ehcache.CacheManager cm,
+    public CacheManager cacheManager(@Autowired @Qualifier("ehCacheManagerFactoryBean") net.sf.ehcache.CacheManager cm,
                                      @Autowired @Qualifier("redisTemplate") StringRedisTemplate redisTemplate) {
+
+        // https://www.jianshu.com/p/a98796caf536
         CompositeCacheManager cacheManager = new CompositeCacheManager();
         List<CacheManager> managers = new ArrayList<>();
         managers.add(new EhCacheCacheManager(cm));
