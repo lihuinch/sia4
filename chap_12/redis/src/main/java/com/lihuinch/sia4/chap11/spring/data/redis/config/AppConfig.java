@@ -8,8 +8,6 @@ import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.jta.JtaTransactionManager;
 
 /**
  * @author lihuinch
@@ -31,7 +29,7 @@ public class AppConfig {
     @Bean(name = "redisTemplate")
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory cf) {
         StringRedisTemplate redis = new StringRedisTemplate(cf);
-        Jackson2JsonRedisSerializer<String> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(String.class);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
 
         redis.setConnectionFactory(cf);
         redis.setKeySerializer(new StringRedisSerializer());
