@@ -33,7 +33,7 @@ public class HibernateRepository {
 
     public NbaPlayer save(NbaPlayer nbaPlayer) {
         Serializable id = currentSession().save(nbaPlayer);
-        return new NbaPlayer(nbaPlayer.getTeamName(), nbaPlayer.getPlayerName());
+        return nbaPlayer;
     }
 
     public NbaPlayer findOne(long id) {
@@ -50,5 +50,9 @@ public class HibernateRepository {
 
     public List<NbaPlayer> findAll() {
         return (List<NbaPlayer>) currentSession().createCriteria(NbaPlayer.class).list();
+    }
+
+    public void delete(NbaPlayer nbaPlayer) {
+        currentSession().delete(nbaPlayer);
     }
 }

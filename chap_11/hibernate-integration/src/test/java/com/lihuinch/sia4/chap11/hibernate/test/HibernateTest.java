@@ -28,7 +28,16 @@ public class HibernateTest {
         nbaPlayer.setTeamName("LA");
         repository.save(nbaPlayer);
 
+        System.out.println(repository.findOne(nbaPlayer.getId()));
+        System.out.println(repository.findOne(nbaPlayer.getId()));
 
+
+        System.out.println(repository.findByPlayerName("科比"));
+        System.out.println(repository.findByPlayerName("科比"));
+
+        repository.delete(nbaPlayer);
+
+        System.out.println(repository.findOne(nbaPlayer.getId()));
         System.out.println(repository.findByPlayerName("科比"));
 
     }
