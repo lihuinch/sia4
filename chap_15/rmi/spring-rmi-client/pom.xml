@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.lihuinch.sia4</groupId>
-    <artifactId>spring-rmi-client</artifactId>
+    <artifactId>chap15.spring-rmi-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-rmi-client</name>
     <description>spring-rmi-client</description>
