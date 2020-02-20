@@ -17,18 +17,20 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
     public int requestCount = 0;
 
     @Override
-    public ArrayOfString authenticate(String strUserName, String strPassword)  {
+    public com.lihuinch.sia4.chap15.spring.ws.entity.ArrayOfString authenticate(String strUserName, String strPassword) {
 
         System.out.println("\n============== function authenticate ==============\n");
 
         String[] asRtn = new String[2];
         asRtn[0] = "{F5FCCBC3-AA13-4d28-9DBF-3E571823F2BB}"; //myGUID.toString();
-        if ("username".equals(strUserName) && "password".equals(strPassword)) {
+/*        if ("username".equals(strUserName) && "password".equals(strPassword)) {
 
             asRtn[1] = "";
         } else {
             asRtn[1] = "nvu";
-        }
+        }*/
+
+        asRtn[1] = "";
 
         System.out.println("In authenticate new two");
         ArrayOfString asRtn2 = new ArrayOfString(asRtn);
@@ -37,16 +39,17 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
         System.out.println("In authenticate as[1] = " + asRtn2.getString(1));
 
         System.out.println("\n-------------- function authenticate --------------\n");
+
         return asRtn2;
     }
 
     @Override
     public String sendRequestXML(String ticket,
-                                           String strHCPResponse,
-                                           String strCompanyFileName,
-                                           String qbXMLCountry,
-                                           int qbXMLMajorVers,
-                                           int qbXMLMinorVers)  {
+                                 String strHCPResponse,
+                                 String strCompanyFileName,
+                                 String qbXMLCountry,
+                                 int qbXMLMajorVers,
+                                 int qbXMLMinorVers) {
 
         System.out.println("\n============== function sendRequestXML ==============\n");
 
@@ -74,7 +77,7 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
     public int receiveResponseXML(String ticket,
                                   String response,
                                   String hresult,
-                                  String message)  {
+                                  String message) {
 
         System.out.println("\n============== function receiveResponseXML ==============\n");
 
@@ -93,8 +96,8 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
 
     @Override
     public String connectionError(String ticket,
-                                            String hresult,
-                                            String message)  {
+                                  String hresult,
+                                  String message) {
 
         System.out.println("\n============== function connectionError ==============\n");
 
@@ -107,7 +110,7 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
     }
 
     @Override
-    public String getLastError(String ticket)   {
+    public String getLastError(String ticket) {
 
         System.out.println("\n============== function getLastError ==============\n");
 
@@ -118,7 +121,7 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
     }
 
     @Override
-    public String closeConnection(String ticket)  {
+    public String closeConnection(String ticket) {
 
         System.out.println("\n============== function closeConnection ==============\n");
 

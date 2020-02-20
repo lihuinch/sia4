@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
@@ -13,14 +14,23 @@ import javax.jws.WebService;
  * @date 2020/2/20 0:29
  */
 @Component
-@WebService(targetNamespace = "http://developer.intuit.com/", serviceName = "QBWebConnectorSvcSoap")
+@WebService(
+        targetNamespace = "http://developer.intuit.com/",
+        serviceName = "QBWebConnectorSvc",
+        portName = "QBWebConnectorSvcSoap"
+)
 public class QBWebConnectorSvcSoapEndpoint {
 
     @Autowired
     private QBWebConnectorSvcSoap services;
 
-    @WebMethod
-    public @WebResult(targetNamespace = "http://developer.intuit.com/") com.lihuinch.sia4.chap15.spring.ws.entity.ArrayOfString authenticate(String strUserName, String strPassword) {
+    @WebMethod(action = "http://developer.intuit.com/authenticate", operationName = "authenticate")
+    public
+    @WebResult(targetNamespace = "http://developer.intuit.com/", name = "authenticateResult")
+    com.lihuinch.sia4.chap15.spring.ws.entity.ArrayOfString authenticate(
+            @WebParam(name = "strUserName", targetNamespace = "http://developer.intuit.com/") String strUserName,
+            @WebParam(name = "strPassword", targetNamespace = "http://developer.intuit.com/") String strPassword) {
+
         return services.authenticate(strUserName, strPassword);
     }
 
