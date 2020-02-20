@@ -1,0 +1,110 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://developer.intuit.com/"
+           xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"
+           xmlns:impl="http://developer.intuit.com/"
+           targetNamespace="http://developer.intuit.com/" elementFormDefault="qualified">
+
+    <xs:element name="authenticate">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="strUserName" type="xs:string"/>
+                <xs:element name="strPassword" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="authenticateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authenticateResult" type="tns:ArrayOfString"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="ArrayOfString">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="sendRequestXML">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ticket" type="xs:string"/>
+                <xs:element name="strHCPResponse" type="xs:string"/>
+                <xs:element name="strCompanyFileName" type="xs:string"/>
+                <xs:element name="qbXMLCountry" type="xs:string"/>
+                <xs:element name="qbXMLMajorVers" type="xs:int"/>
+                <xs:element name="qbXMLMinorVers" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sendRequestXMLResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="sendRequestXMLResult" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="receiveResponseXML">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ticket" type="xs:string"/>
+                <xs:element name="response" type="xs:string"/>
+                <xs:element name="hresult" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="receiveResponseXMLResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="receiveResponseXMLResult" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="connectionError">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ticket" type="xs:string"/>
+                <xs:element name="hresult" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="connectionErrorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="connectionErrorResult" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getLastError">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ticket" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getLastErrorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="getLastErrorResult" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="closeConnection">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ticket" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="closeConnectionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="closeConnectionResult" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>
