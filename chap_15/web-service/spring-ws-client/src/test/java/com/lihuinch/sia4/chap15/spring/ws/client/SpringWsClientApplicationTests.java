@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+
 @SpringBootTest
 class SpringWsClientApplicationTests {
 
@@ -18,8 +20,13 @@ class SpringWsClientApplicationTests {
 
 	@Test
 	public  void test01() {
-		ArrayOfString authenticate = qbWebConnectorSvcSoap.authenticate("1", "1");
-		System.out.println(authenticate);
+		ArrayOfString authenticate = qbWebConnectorSvcSoap.authenticate("username", "password");
+		System.out.println(Arrays.toString(authenticate.getString()));
+
+
+		String requestXML = qbWebConnectorSvcSoap.sendRequestXML("1", "2", "3", "4", 5, 6);
+		System.out.println(requestXML);
+
 	}
 
 }

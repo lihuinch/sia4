@@ -19,8 +19,8 @@ public class AppConfig {
     public JaxWsPortProxyFactoryBean QBWebConnectorSvcSoap() throws MalformedURLException {
         JaxWsPortProxyFactoryBean proxy = new JaxWsPortProxyFactoryBean();
         proxy.setWsdlDocumentUrl(new URL("http://localhost:8080/axis/services/QBWebConnectorSvcSoap?wsdl"));
-        proxy.setServiceName("QBWebConnectorSvcSoap");
-        proxy.setPortName("QBWebConnectorSvcSoapEndpointPort");
+        proxy.setServiceName("QBWebConnectorSvc");
+        proxy.setPortName("QBWebConnectorSvcSoap");
         proxy.setServiceInterface(QBWebConnectorSvcSoap.class);
         proxy.setNamespaceUri("http://developer.intuit.com/");
         return proxy;

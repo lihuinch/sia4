@@ -23,14 +23,13 @@ public class QBWebConnectorSvcSoapImpl implements QBWebConnectorSvcSoap {
 
         String[] asRtn = new String[2];
         asRtn[0] = "{F5FCCBC3-AA13-4d28-9DBF-3E571823F2BB}"; //myGUID.toString();
-/*        if ("username".equals(strUserName) && "password".equals(strPassword)) {
+        if ("username".equals(strUserName) && "password".equals(strPassword)) {
 
             asRtn[1] = "";
         } else {
             asRtn[1] = "nvu";
-        }*/
+        }
 
-        asRtn[1] = "";
 
         System.out.println("In authenticate new two");
         ArrayOfString asRtn2 = new ArrayOfString(asRtn);

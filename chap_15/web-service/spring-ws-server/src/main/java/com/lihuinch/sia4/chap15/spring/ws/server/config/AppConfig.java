@@ -17,6 +17,7 @@ public class AppConfig {
         SimpleJaxWsServiceExporter exporter = new SimpleJaxWsServiceExporter();
         exporter.setBaseAddress("http://localhost:8080/axis/services/");
 
+
         return exporter;
     }
 }
