@@ -1,13 +1,13 @@
-title GITÀ­È¡Åú´¦Àí
+title GITæ‹‰å–æ‰¹å¤„ç†
 color 16
 
 echo ++++++++++++++++++++++++++++++
 git pull
-echo pull Ö´ÐÐ½áÊø£¡
+echo pull æ‰§è¡Œç»“æŸï¼
 echo ++++++++++++++++++++++++++++++
 
 echo;
-echo Åú´¦ÀíÖ´ÐÐÍê±Ï£¡
+echo æ‰¹å¤„ç†æ‰§è¡Œå®Œæ¯•ï¼
 echo;
 
 pause
