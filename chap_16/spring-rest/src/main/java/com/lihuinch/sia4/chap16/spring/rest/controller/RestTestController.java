@@ -2,12 +2,13 @@ package com.lihuinch.sia4.chap16.spring.rest.controller;
 
 import com.lihuinch.sia4.chap16.spring.rest.entity.NbaPlayer;
 import com.lihuinch.sia4.chap16.spring.rest.exception.NotFound404Exception;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 /**
  * @author lihuinch
@@ -23,8 +24,8 @@ public class RestTestController {
         return kobe;
     }
 
-    @RequestMapping("/no")
-    public NbaPlayer findByNo(@RequestBody Integer no) {
+    @RequestMapping("/{no}")
+    public NbaPlayer findByNo(@PathVariable Integer no) {
         NbaPlayer nbaPlayer = new NbaPlayer(no, "name : " + no, "team : " + no);
         return nbaPlayer;
     }
@@ -46,6 +47,19 @@ public class RestTestController {
         }
 
         return kobe;
+    }
+
+    @RequestMapping("/header")
+    public ResponseEntity<NbaPlayer> header(UriComponentsBuilder ucb) {
+        URI uri = ucb.path("/no/")
+                .path(kobe.getNo() + "")
+                .build()
+                .toUri();
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(uri);
+
+        return new ResponseEntity<NbaPlayer>(kobe, httpHeaders, HttpStatus.CREATED);
     }
 
 
