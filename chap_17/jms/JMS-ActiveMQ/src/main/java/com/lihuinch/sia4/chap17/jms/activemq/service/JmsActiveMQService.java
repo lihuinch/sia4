@@ -18,29 +18,36 @@ public class JmsActiveMQService {
         this.operations = operations;
     }
 
-    public void sendQueue1(final NbaPlayer value) {
-        System.out.println();
-        System.out.println("============ Queue1 ============");
-        System.out.println();
-        operations.convertAndSend(SomeConstants.JMS_ACTIVE_MQ_QUEUE1, value);
-        System.out.println("send : " + value);
-        System.out.println();
+    public void sendQueue1(NbaPlayer value) {
+        System.out.println("============ sendQueue1 ============");
+        sendQueue(SomeConstants.JMS_ACTIVE_MQ_QUEUE1, value);
         System.out.println();
     }
 
     public NbaPlayer receiveQueue1() {
-        System.out.println();
         System.out.println("============ receiveQueue1 ============");
+        NbaPlayer result = receiveQueue(SomeConstants.JMS_ACTIVE_MQ_QUEUE1);
         System.out.println();
-        NbaPlayer resut = (NbaPlayer) operations.receiveAndConvert(SomeConstants.JMS_ACTIVE_MQ_QUEUE1);
-        System.out.println("receive : " + resut);
+        return result;
+    }
+
+
+    public void sendQueue2(NbaPlayer value) {
+        System.out.println("============ sendQueue2 ============");
+        sendQueue(SomeConstants.JMS_ACTIVE_MQ_QUEUE2, value);
         System.out.println();
+    }
+
+    public NbaPlayer receiveQueue2() {
+        System.out.println("============ receiveQueue2 ============");
+        NbaPlayer result = receiveQueue(SomeConstants.JMS_ACTIVE_MQ_QUEUE2);
         System.out.println();
-        return resut;
+        return result;
     }
 
     /**
      * 参数receive是必要的, 还必须是java.lang.String
+     * todo 如何接受json后直接转化为实体
      *
      * @param receive
      */
@@ -51,5 +58,20 @@ public class JmsActiveMQService {
         System.out.println("listener : " + receive);
         System.out.println();
         System.out.println();
+    }
+
+    private void sendQueue(String des, NbaPlayer value) {
+        System.out.println();
+        operations.convertAndSend(des, value);
+        System.out.println("des : " + des + ", send : " + value);
+        System.out.println();
+    }
+
+    private NbaPlayer receiveQueue(String des) {
+        System.out.println();
+        NbaPlayer result = (NbaPlayer) operations.receiveAndConvert(des);
+        System.out.println("des : " + des + "receive : " + result);
+        System.out.println();
+        return result;
     }
 }

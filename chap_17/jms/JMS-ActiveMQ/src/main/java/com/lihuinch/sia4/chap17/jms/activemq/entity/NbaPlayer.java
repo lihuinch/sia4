@@ -13,11 +13,19 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class NbaPlayer implements Serializable{
+public class NbaPlayer implements Serializable {
     private Integer id;
 
     private String teamName;
 
     private String playerName;
 
+    public Integer index = 0;
+
+    private static NbaPlayer kobe = new NbaPlayer(24, "kobe", "lakers", 0);
+
+    public static NbaPlayer kobe() {
+        kobe.index++;
+        return kobe;
+    }
 }
