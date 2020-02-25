@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+                           http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.3.xsd">
+
+    <!--引用常量类
+     1. 加入
+         xmlns:util="http://www.springframework.org/schema/util"
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd
+
+    2. <util:constant id="JMS_ACTIVE_MQ_QUEUE1"
+                   static-field="JMS_ACTIVE_MQ_QUEUE1
+    3. #{JMS_ACTIVE_MQ_QUEUE1}
+    -->
+    <util:constant id="JMS_ACTIVE_MQ_QUEUE1"
+                   static-field="com.lihuinch.sia4.chap17.jms.activemq.constant.SomeConstants.JMS_ACTIVE_MQ_QUEUE1"/>
+
+    <jms:listener-container>
+        <jms:listener destination="#{JMS_ACTIVE_MQ_QUEUE1}" ref="jmsActiveMQService" method="listenerQueue1"/>
+    </jms:listener-container>
+
+    <bean id="jmsActiveMQService" class="com.lihuinch.sia4.chap17.jms.activemq.service.JmsActiveMQService"/>
+
+</beans>
